@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"sort"
 
@@ -40,9 +41,16 @@ func main() {
 					},
 				},
 				Action: func(c *cli.Context) error {
-					fsApp := utils.Must(fastschema.New(&fastschema.AppConfig{
+					z := &fastschema.AppConfig{
 						Dir: c.Args().Get(0),
-					}))
+					}
+					fmt.Printf("%+v\n", z)
+
+					x, y := fastschema.New(z)
+					fmt.Printf("x: %+v\n", x)
+					fmt.Printf("y: %+v\n", y)
+
+					fsApp := utils.Must(x, y)
 
 					return toolservice.Setup(
 						fsApp.DB(),

@@ -6,3 +6,4 @@ tests/data/migrations/*
 /data/
 
 dist/
+*.exe

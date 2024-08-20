@@ -138,7 +138,8 @@ func (a *App) init() (err error) {
 		if publicPath != "" {
 			a.startupMessages = append(
 				a.startupMessages,
-				fmt.Sprintf("Serving files from disk [%s:%s] at %s", disk.Name(), publicPath, disk.Root()),
+				fmt.Sprintf("Serving files from disk [%s:%s] at %s",
+					disk.Name(), publicPath, disk.Root()),
 			)
 
 			a.statics = append(a.statics, &app.StaticFs{
@@ -611,6 +612,8 @@ func (a *App) prepareConfig() (err error) {
 	a.schemasDir = path.Join(a.dataDir, "schemas")
 	a.migrationDir = path.Join(a.dataDir, "migrations")
 	envFile := path.Join(a.dataDir, ".env")
+
+	// pretty print a in console
 
 	if err = utils.MkDirs(
 		a.logDir,
